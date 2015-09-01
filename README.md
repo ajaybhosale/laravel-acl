@@ -28,29 +28,29 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 2. Copy and past "Codebank/Acl" into "packages" folder.
 
 3. Require the package in your 'composer.json' and update your dependency with 'composer update':
-
+```php
 	"psr-4": {
 			"App\\": "app/",
 			"Codebank\\Acl\\": "packages/Codebank/Acl/src/" 
 		}
-
+```
 4. Add the package to your application service providers in 'config/app.php'.
-
+```php
 	'providers' => [
 		'Codebank\Acl\AclServiceProvider',
 	],
-
+```
 5. Publish the package migrations to your application and run these with `php artisan migrate.
 	$ php artisan vendor:publish --provider="Codebank\Acl\AclServiceProvider"
 
 6. Add the middleware to your 'app/Http/Kernel.php'
-
+```php
 	protected $routeMiddleware = [
 		'acl' => 'Codebank\Acl\Middleware\Acl',
 	];
-
+```
 7. Add the "UserPermission" trait to your 'User' model.
-
+```php
 	use Codebank\Acl\Traits\UserPermission;
 	
 
@@ -59,15 +59,15 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 		use Authenticatable, CanResetPassword, UserPermission;
 		
 	}
-
+```
 # <a name="documentation"></a>Documentation
 
 1. Add permission as an array into config/view.php
-
+```php
 	'permission' => []
-
+```
 2. Adding rules into 'app/Http/routs.php'. You have to specify module name as well as action name inside 'permission'  
-	
+```php	
 	Route::group(['middleware' => ['auth', 'acl']], function()
     	{
 	        Route::get('/contact', [
@@ -105,9 +105,9 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 	            'permission' => ['module' => 'contact', 'action' => 'destroy']
 	        ]);
     	});
-
+```
 3. Control the menu based on permission in view/template section. 
-
+```php
 	@if (!Auth::guest())
 	<ul class='dropdown-menu' role='menu'>
 		@if(auth()->user()->can('view', 'contact'))
@@ -135,6 +135,7 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 		@endif
 	</ul>
 	@endif
+```
 # <a name="roadmap"></a>Roadmap
 
 Here's the TODO list for the next release (**2.0**).
