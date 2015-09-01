@@ -43,20 +43,19 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 5. Publish the package migrations to your application and run these with `php artisan migrate.
 	$ php artisan vendor:publish --provider="Codebank\Acl\AclServiceProvider"
 
-6. Add the middleware to your 'app/Http/Kernel.php'.
+6. Add the middleware to your 'app/Http/Kernel.php'
 
-protected $routeMiddleware = [
-	'acl' => 'Codebank\Acl\Middleware\Acl',
-];
+	protected $routeMiddleware = [
+		'acl' => 'Codebank\Acl\Middleware\Acl',
+	];
 
 7. Add the "UserPermission" trait to your 'User' model.
 
-use Codebank\Acl\Traits\UserPermission;
+	use Codebank\Acl\Traits\UserPermission;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
-
-    use Authenticatable, CanResetPassword, UserPermission;
-}
+	class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+		use Authenticatable, CanResetPassword, UserPermission;
+	}
 
 # <a name="documentation"></a>Documentation
 
