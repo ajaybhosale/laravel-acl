@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class AclUserRole extends Model {
 
+    /**
+     * Retrive the login users permissions.
+     * 
+     * @name	getPermissions
+     * @access	public      
+     * @author	AB
+     * @return	Arrya of permissions 
+     */
     public static function getPermissions()
     {
         $arrPermission = [];

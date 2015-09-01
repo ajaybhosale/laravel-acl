@@ -65,9 +65,7 @@ trait UserPermission {
      * @return	Boolean  If user has access permission then it will return true else false
      */
     private function _hasPermission($roleIds, $module, $action)
-    {
-        //$result = $this->role()->select('acl_roles.id')->find($roleId)->permissions()->select('acl_permissions.id')->where('module', '=', $module)->where('action', '=', $action)->where('status', '=', 1)->get();
-        // return $result->count() ? true : false;
+    {        
         try
         {
             $query  = self::selectRaw('count(users.id) as hasPermission')
@@ -108,7 +106,17 @@ trait UserPermission {
         }
     }
 
-    public function can($action, $module, $availablePermission = null)
+    /**
+     * Check login user having permission for given action and module
+     * 
+     * @name	can
+     * @access	public      
+     * @author	AB
+     * @param	$action     String  Action name which has to check
+     * @param	$module     String  Module name which has to check
+     * @return	Boolean true or false
+     */
+    public function can($action, $module)
     {        
         $availablePermission = \Config::get('view.permission');
         $actionRequest       = strtolower($module . '-' . $action);
