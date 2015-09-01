@@ -29,20 +29,19 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 
 3. Require the package in your 'composer.json' and update your dependency with 'composer update':
 
-"psr-4": {
+	"psr-4": {
 			"App\\": "app/",
 			"Codebank\\Acl\\": "packages/Codebank/Acl/src/" 
 		}
 
 4. Add the package to your application service providers in 'config/app.php'.
 
-'providers' => [
-	'Codebank\Acl\AclServiceProvider',
-],
+	'providers' => [
+		'Codebank\Acl\AclServiceProvider',
+	],
 
 5. Publish the package migrations to your application and run these with `php artisan migrate.
-
-$ php artisan vendor:publish --provider="Codebank\Acl\AclServiceProvider"
+	$ php artisan vendor:publish --provider="Codebank\Acl\AclServiceProvider"
 
 6. Add the middleware to your 'app/Http/Kernel.php'.
 
@@ -67,7 +66,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 2. Adding rules into 'app/Http/routs.php'. You have to specify module name as well as action name inside 'permission'  
 	
-	Route::group(['middleware' => ['auth', 'acl']], function()
+Route::group(['middleware' => ['auth', 'acl']], function()
     {
         Route::get('/contact', [
             'uses'       => 'ContactController@index',
