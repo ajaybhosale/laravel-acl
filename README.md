@@ -52,9 +52,12 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 7. Add the "UserPermission" trait to your 'User' model.
 
 	use Codebank\Acl\Traits\UserPermission;
+	
 
 	class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+	
 		use Authenticatable, CanResetPassword, UserPermission;
+		
 	}
 
 # <a name="documentation"></a>Documentation
@@ -65,48 +68,48 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 
 2. Adding rules into 'app/Http/routs.php'. You have to specify module name as well as action name inside 'permission'  
 	
-Route::group(['middleware' => ['auth', 'acl']], function()
-    {
-        Route::get('/contact', [
-            'uses'       => 'ContactController@index',
-            'permission' => ['module' => 'contact', 'action' => 'view']
-        ]);
+	Route::group(['middleware' => ['auth', 'acl']], function()
+    	{
+	        Route::get('/contact', [
+	            'uses'       => 'ContactController@index',
+	            'permission' => ['module' => 'contact', 'action' => 'view']
+	        ]);
 
-        Route::get('/contact/show', [
-            'uses'       => 'ContactController@show',
-            'permission' => ['module' => 'contact', 'action' => 'show']
-        ]);
+	        Route::get('/contact/show', [
+	            'uses'       => 'ContactController@show',
+	            'permission' => ['module' => 'contact', 'action' => 'show']
+	        ]);
 
-        Route::get('/contact/create', [
-            'uses'       => 'ContactController@create',
-            'permission' => ['module' => 'contact', 'action' => 'create']
-        ]);
+	        Route::get('/contact/create', [
+	            'uses'       => 'ContactController@create',
+	            'permission' => ['module' => 'contact', 'action' => 'create']
+	        ]);
+	
+	        Route::get('/contact/store', [
+	            'uses'       => 'ContactController@store',
+	            'permission' => ['module' => 'contact', 'action' => 'store']
+	        ]);
 
-        Route::get('/contact/store', [
-            'uses'       => 'ContactController@store',
-            'permission' => ['module' => 'contact', 'action' => 'store']
-        ]);
-
-        Route::get('/contact/edit', [
-            'uses'       => 'ContactController@edit',
-            'permission' => ['module' => 'contact', 'action' => 'edit']
-        ]);
-
-        Route::get('/contact/update', [
-            'uses'       => 'ContactController@update',
-            'permission' => ['module' => 'contact', 'action' => 'update']
-        ]);
-
-        Route::get('/contact/destroy', [
-            'uses'       => 'ContactController@destroy',
-            'permission' => ['module' => 'contact', 'action' => 'destroy']
-        ]);
-    });
+	        Route::get('/contact/edit', [
+	            'uses'       => 'ContactController@edit',
+	            'permission' => ['module' => 'contact', 'action' => 'edit']
+	        ]);
+	
+	        Route::get('/contact/update', [
+	            'uses'       => 'ContactController@update',
+	            'permission' => ['module' => 'contact', 'action' => 'update']
+	        ]);
+	
+	        Route::get('/contact/destroy', [
+	            'uses'       => 'ContactController@destroy',
+	            'permission' => ['module' => 'contact', 'action' => 'destroy']
+	        ]);
+    	});
 
 3. Control the menu based on permission in view/template section. 
 
-@if (!Auth::guest())
-	<ul class="dropdown-menu" role="menu">
+	@if (!Auth::guest())
+	<ul class='dropdown-menu' role='menu'>
 		@if(auth()->user()->can('view', 'contact'))
 			<li><a href="{{ url('contact/show') }}">Show</a></li>
 		@endif
@@ -131,7 +134,7 @@ Route::group(['middleware' => ['auth', 'acl']], function()
 			<li><a href="{{ url('contact/destroy') }}">Destroy</a></li>
 		@endif
 	</ul>
- @endif
+	@endif
 # <a name="roadmap"></a>Roadmap
 
 Here's the TODO list for the next release (**2.0**).
