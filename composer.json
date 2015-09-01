@@ -1,0 +1,23 @@
+{
+    "name": "codebank/acl",
+    "description": "This is a acl package define by silicus",
+    "keywords": ["ACL", "permissions and roles", "permissions", "roles", "Laravel Auth", "Laravel 5.0"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ajay Bosale",
+            "email": "ajay.bhosale@silicus.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Codebank\\Acl": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.*",
+        "illuminate/support": "5.1.*"
+    }
+}
